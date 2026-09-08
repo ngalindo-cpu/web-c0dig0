@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>c0dig0 · Laboratorio de Software | Desarrollo a medida y soluciones SaaS</title>
+<meta name="description" content="c0dig0: laboratorio de software especializado en desarrollo a medida, páginas web profesionales y servicios de respaldo encriptado. Productos SaaS: control911, pix911, datos911." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: {
+            950: '#030508',
+            900: '#070a10',
+            800: '#0b1018',
+            700: '#111827',
+          }
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+        },
+        animation: {
+          'glow-pulse': 'glowPulse 4s ease-in-out infinite',
+          'float': 'float 6s ease-in-out infinite',
+          'shimmer': 'shimmer 3s linear infinite',
+          'gradient-shift': 'gradientShift 8s ease infinite',
+        },
+        keyframes: {
+          glowPulse: {
+            '0%, 100%': { opacity: '0.5' },
+            '50%': { opacity: '1' },
+          },
+          float: {
+            '0%, 100%': { transform: 'translateY(0px)' },
+            '50%': { transform: 'translateY(-12px)' },
+          },
+          shimmer: {
+            '0%': { backgroundPosition: '-200% 0' },
+            '100%': { backgroundPosition: '200% 0' },
+          },
+          gradientShift: {
+            '0%, 100%': { backgroundPosition: '0% 50%' },
+            '50%': { backgroundPosition: '100% 50%' },
+          },
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #030508;
+    color: #e5e7eb;
+    overflow-x: hidden;
+  }
+  .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+
+  /* Fondo con grid pattern */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-grid-fade {
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* Gradientes radiales de fondo */
+  .glow-blue {
+    background: radial-gradient(circle at center, rgba(59,130,246,0.2), transparent 60%);
+  }
+  .glow-violet {
+    background: radial-gradient(circle at center, rgba(139,92,246,0.2), transparent 60%);
+  }
+  .glow-cyan {
+    background: radial-gradient(circle at center, rgba(6,182,212,0.2), transparent 60%);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-strong {
+    background: rgba(10, 15, 25, 0.6);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Tarjeta con glow */
+  .card-glow {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, transparent, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+  }
+  .card-glow-blue:hover::before {
+    background: linear-gradient(135deg, rgba(59,130,246,0.8), rgba(96,165,250,0.2));
+    opacity: 1;
+  }
+  .card-glow-violet:hover::before {
+    background: linear-gradient(135deg, rgba(139,92,246,0.8), rgba(167,139,250,0.2));
+    opacity: 1;
+  }
+  .card-glow-cyan:hover::before {
+    background: linear-gradient(135deg, rgba(6,182,212,0.8), rgba(34,211,238,0.2));
+    opacity: 1;
+  }
+  .card-glow-blue:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -15px rgba(59,130,246,0.35), 0 0 0 1px rgba(59,130,246,0.15);
+  }
+  .card-glow-violet:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -15px rgba(139,92,246,0.35), 0 0 0 1px rgba(139,92,246,0.15);
+  }
+  .card-glow-cyan:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -15px rgba(6,182,212,0.35), 0 0 0 1px rgba(6,182,212,0.15);
+  }
+
+  /* Texto con gradiente */
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-violet {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-mixed {
+    background: linear-gradient(135deg, #60a5fa 0%, #8b5cf6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Botón con efecto shine */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.6s;
+  }
+  .btn-shine:hover::after {
+    left: 100%;
+  }
+
+  /* Shimmer text */
+  .shimmer-text {
+    background: linear-gradient(90deg, #e5e7eb 0%, #ffffff 50%, #e5e7eb 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #030508; }
+  ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+  /* Barra de progreso animada */
+  .progress-bar {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Punto pulsante */
+  .pulse-dot {
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.4;
+    animation: pulse 2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.8); opacity: 0.6; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+
+  /* Código animado */
+  .code-line {
+    opacity: 0;
+    animation: fadeInLine 0.5s ease forwards;
+  }
+  @keyframes fadeInLine {
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ===== BACKGROUND EFFECTS ===== -->
+<div class="fixed inset-0 pointer-events-none z-0">
+  <div class="absolute top-0 left-1/4 w-[800px] h-[800px] glow-blue opacity-30"></div>
+  <div class="absolute top-[30%] right-0 w-[700px] h-[700px] glow-violet opacity-25"></div>
+  <div class="absolute bottom-0 left-0 w-[600px] h-[600px] glow-cyan opacity-20"></div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-strong">
+  <nav class="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="relative">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-violet-500 to-cyan-500 flex items-center justify-center font-display font-bold text-white text-lg shadow-lg shadow-blue-500/30 group-hover:shadow-blue-500/50 transition-shadow animate-gradient-shift">
+          c0
+        </div>
+        <div class="absolute -top-1 -right-1 w-3 h-3 bg-blue-400 rounded-full pulse-dot text-blue-400"></div>
+      </div>
+      <div class="flex flex-col leading-tight">
+        <span class="font-display font-bold text-white text-lg tracking-tight">c0dig<span class="text-blue-400">0</span></span>
+        <span class="text-[10px] text-gray-500 tracking-widest uppercase">Laboratorio de software</span>
+      </div>
+    </a>
+
+    <!-- Nav links -->
+    <ul class="hidden lg:flex items-center gap-8">
+      <li><a href="#servicios" class="text-sm text-gray-300 hover:text-white transition-colors relative group">
+        Servicios
+        <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+      </a></li>
+      <li><a href="#control911" class="text-sm text-gray-300 hover:text-white transition-colors relative group">
+        control911
+        <span class="absolute -bottom-1 left-0 w-0 h-px bg-blue-400 group-hover:w-full transition-all duration-300"></span>
+      </a></li>
+      <li><a href="#pix911" class="text-sm text-gray-300 hover:text-white transition-colors relative group">
+        pix911
+        <span class="absolute -bottom-1 left-0 w-0 h-px bg-violet-400 group-hover:w-full transition-all duration-300"></span>
+      </a></li>
+      <li><a href="#datos911" class="text-sm text-gray-300 hover:text-white transition-colors relative group">
+        datos911
+        <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+      </a></li>
+    </ul>
+
+    <!-- CTA -->
+    <a href="#contacto" class="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 text-white font-semibold text-sm transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 hover:-translate-y-0.5">
+      <span class="hidden sm:inline">Iniciar proyecto</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+    </a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="relative pt-36 pb-24 lg:pt-44 lg:pb-32 z-10">
+  <div class="absolute inset-0 bg-grid bg-grid-fade opacity-60"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+    <!-- Badge superior -->
+    <div class="flex justify-center mb-8">
+      <div class="glass inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs">
+        <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span class="text-gray-300">Laboratorio de software activo</span>
+        <span class="text-gray-600">·</span>
+        <span class="text-blue-400 font-semibold">3 productos SaaS</span>
+      </div>
+    </div>
+
+    <!-- Título principal -->
+    <div class="text-center max-w-5xl mx-auto">
+      <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl tracking-tight leading-[0.95] mb-8">
+        <span class="block text-white">Construimos</span>
+        <span class="block text-gradient-mixed">software que</span>
+        <span class="block text-white">resuelve problemas</span>
+        <span class="block text-gradient-blue">reales.</span>
+      </h1>
+
+      <p class="text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+        Desarrollo de software a medida, páginas web profesionales y servicios de respaldo encriptado. Tres productos SaaS propios: <span class="text-blue-400 font-medium">control911</span>, <span class="text-violet-400 font-medium">pix911</span> y <span class="text-cyan-400 font-medium">datos911</span>.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#servicios" class="btn-shine group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-violet-500 text-white font-semibold shadow-xl shadow-blue-500/30 hover:shadow-blue-400/50 hover:-translate-y-1 transition-all">
+          <span>Explorar servicios</span>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="#control911" class="group inline-flex items-center gap-3 px-8 py-4 rounded-full glass hover:bg-white/10 text-white font-semibold transition-all hover:-translate-y-1">
+          <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+          <span>Ver control911</span>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 max-w-4xl mx-auto">
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="font-display text-3xl lg:text-4xl font-bold text-gradient-blue">3</div>
+          <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Productos SaaS</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="font-display text-3xl lg:text-4xl font-bold text-white">100%</div>
+          <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Código propio</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="font-display text-3xl lg:text-4xl font-bold text-gradient-violet">E2E</div>
+          <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Cifrado real</div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="font-display text-3xl lg:text-4xl font-bold text-white">0</div>
+          <div class="text-xs text-gray-500 mt-1 uppercase tracking-wider">Conocimiento de datos</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICIOS DEL LABORATORIO ===== -->
+<section id="servicios" class="relative py-24 lg:py-32 z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <!-- Header de sección -->
+    <div class="text-center mb-16 lg:mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-blue-400 font-semibold uppercase tracking-widest mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+        El laboratorio
+      </div>
+      <h2 class="font-display text-4xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        Tres líneas de trabajo. <span class="text-gradient-mixed">Un mismo estándar.</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+        Combinamos ingeniería de software, diseño centrado en el usuario y prácticas de seguridad para entregar productos confiables y escalables.
+      </p>
+    </div>
+
+    <!-- Grid de 3 tarjetas -->
+    <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+
+      <!-- TARJETA 1: Software a medida -->
+      <div class="card-glow card-glow-blue glass rounded-3xl p-8 lg:p-10 relative overflow-hidden group">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-colors"></div>
+
+        <div class="relative">
+          <div class="flex items-start justify-between mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 border border-blue-500/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-blue-400 glass px-3 py-1 rounded-full">01</span>
+          </div>
+
+          <h3 class="font-display text-2xl lg:text-3xl font-bold text-white mb-4 tracking-tight">
+            Software a medida
+          </h3>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            Aplicaciones empresariales diseñadas específicamente para los procesos de su organización. Sistemas internos, integraciones, automatizaciones y ERPs personalizados.
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-blue-500/20 transition-colors">
+                <svg class="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Sistemas empresariales</div>
+                <div class="text-sm text-gray-500">ERPs, CRMs y plataformas internas</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-blue-500/20 transition-colors">
+                <svg class="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Integraciones y APIs</div>
+                <div class="text-sm text-gray-500">Conectamos sus sistemas existentes</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-blue-500/20 transition-colors">
+                <svg class="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Automatizaciones</div>
+                <div class="text-sm text-gray-500">Flujos de trabajo inteligentes</div>
+              </div>
+            </li>
+          </ul>
+
+          <a href="#contacto" class="inline-flex items-center gap-2 text-blue-400 font-semibold group/link">
+            <span>Cotizar proyecto</span>
+            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 2: Páginas web -->
+      <div class="card-glow card-glow-violet glass rounded-3xl p-8 lg:p-10 relative overflow-hidden group">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl group-hover:bg-violet-500/20 transition-colors"></div>
+
+        <div class="relative">
+          <div class="flex items-start justify-between mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-violet-500/5 border border-violet-500/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-violet-400 glass px-3 py-1 rounded-full">02</span>
+          </div>
+
+          <h3 class="font-display text-2xl lg:text-3xl font-bold text-white mb-4 tracking-tight">
+            Páginas web profesionales
+          </h3>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            Sitios web corporativos rápidos, accesibles y optimizados para SEO. Desde landings institucionales hasta plataformas complejas de alto tráfico.
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-violet-500/20 transition-colors">
+                <svg class="w-3 h-3 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Sitios corporativos</div>
+                <div class="text-sm text-gray-500">Presencia digital profesional</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-violet-500/20 transition-colors">
+                <svg class="w-3 h-3 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Landing pages</div>
+                <div class="text-sm text-gray-500">Conversión y rendimiento</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-violet-500/20 transition-colors">
+                <svg class="w-3 h-3 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">E-commerce</div>
+                <div class="text-sm text-gray-500">Tiendas online escalables</div>
+              </div>
+            </li>
+          </ul>
+
+          <a href="#contacto" class="inline-flex items-center gap-2 text-violet-400 font-semibold group/link">
+            <span>Ver portafolio</span>
+            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- TARJETA 3: Respaldo de datos -->
+      <div class="card-glow card-glow-cyan glass rounded-3xl p-8 lg:p-10 relative overflow-hidden group">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl group-hover:bg-cyan-500/20 transition-colors"></div>
+
+        <div class="relative">
+          <div class="flex items-start justify-between mb-8">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/20 flex items-center justify-center">
+              <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-cyan-400 glass px-3 py-1 rounded-full">03</span>
+          </div>
+
+          <h3 class="font-display text-2xl lg:text-3xl font-bold text-white mb-4 tracking-tight">
+            Respaldo de datos encriptado
+          </h3>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            Servicios de backup con cifrado de extremo a extremo, arquitectura zero-knowledge y preservación íntegra de la calidad y los metadatos originales.
+          </p>
+
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-cyan-500/20 transition-colors">
+                <svg class="w-3 h-3 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Cifrado E2E</div>
+                <div class="text-sm text-gray-500">Zero-knowledge verificable</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-cyan-500/20 transition-colors">
+                <svg class="w-3 h-3 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Backup automático</div>
+                <div class="text-sm text-gray-500">Programable y transparente</div>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 group/item">
+              <div class="w-6 h-6 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-cyan-500/20 transition-colors">
+                <svg class="w-3 h-3 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+              </div>
+              <div>
+                <div class="text-white font-medium">Recuperación rápida</div>
+                <div class="text-sm text-gray-500">Ante incidentes y desastres</div>
+              </div>
+            </li>
+          </ul>
+
+          <a href="#contacto" class="inline-flex items-center gap-2 text-cyan-400 font-semibold group/link">
+            <span>Proteger mis datos</span>
+            <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTROL911 ===== -->
+<section id="control911" class="relative py-24 lg:py-32 z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Contenido -->
+      <div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-blue-400 font-semibold uppercase tracking-widest mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+          Producto flagship
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6">
+          control<span class="text-gradient-blue">911</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+          SaaS multi-tenant diseñado para el control integral de tiendas de reparación de equipos electrónicos. Escalable y adaptable a otros rubros comerciales.
+        </p>
+
+        <div class="space-y-4 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Gestión de órdenes de servicio</div>
+              <div class="text-gray-500 text-sm">Control completo del flujo de reparaciones desde ingreso hasta entrega</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Inventario de repuestos</div>
+              <div class="text-gray-500 text-sm">Control de stock, movimientos y alertas automáticas</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Multi-usuario y roles</div>
+              <div class="text-gray-500 text-sm">Técnicos, administradores y clientes con permisos diferenciados</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://control911.app" target="_blank" rel="noopener" class="btn-shine inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 hover:-translate-y-0.5 transition-all">
+            Acceder a control911
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 text-white font-semibold transition-all">
+            Solicitar demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="relative">
+        <div class="glass rounded-3xl p-8 lg:p-10 relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
+          
+          <div class="relative">
+            <!-- Mockup de dashboard -->
+            <div class="bg-ink-900 rounded-2xl p-6 border border-white/5">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                <div class="ml-4 text-xs text-gray-500 font-mono">control911.app</div>
+              </div>
+              
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                  <div>
+                    <div class="text-xs text-gray-500 mb-1">Órdenes activas</div>
+                    <div class="text-2xl font-bold text-white">247</div>
+                  </div>
+                  <div class="text-blue-400 text-sm font-semibold">+12% ↑</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="p-3 bg-white/5 rounded-xl">
+                    <div class="text-xs text-gray-500 mb-1">En reparación</div>
+                    <div class="text-xl font-bold text-blue-400">89</div>
+                  </div>
+                  <div class="p-3 bg-white/5 rounded-xl">
+                    <div class="text-xs text-gray-500 mb-1">Listos</div>
+                    <div class="text-xl font-bold text-green-400">158</div>
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-400">iPhone 13 - Pantalla</span>
+                    <span class="text-blue-400 font-semibold">En proceso</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-400">MacBook Pro - Batería</span>
+                    <span class="text-green-400 font-semibold">Listo</span>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-gray-400">Samsung S22 - Puerto</span>
+                    <span class="text-yellow-400 font-semibold">Diagnóstico</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats flotantes -->
+            <div class="absolute -top-4 -right-4 glass rounded-2xl p-4 shadow-2xl">
+              <div class="text-xs text-gray-500 mb-1">Tiempo promedio</div>
+              <div class="text-2xl font-bold text-blue-400">2.4h</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PIX911 ===== -->
+<section id="pix911" class="relative py-24 lg:py-32 z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Visual (izquierda en desktop) -->
+      <div class="relative order-2 lg:order-1">
+        <div class="glass rounded-3xl p-8 lg:p-10 relative overflow-hidden">
+          <div class="absolute -top-20 -left-20 w-64 h-64 bg-violet-500/20 rounded-full blur-3xl"></div>
+          
+          <div class="relative">
+            <!-- Mockup de galería encriptada -->
+            <div class="bg-ink-900 rounded-2xl p-6 border border-white/5">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                <div class="ml-4 text-xs text-gray-500 font-mono">pix911.app</div>
+              </div>
+              
+              <div class="mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                  <span class="text-xs text-violet-400 font-semibold">CIFRADO E2E ACTIVO</span>
+                </div>
+                <div class="text-xs text-gray-500">Zero-knowledge · Sin acceso del proveedor</div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2 mb-6">
+                <div class="aspect-square bg-gradient-to-br from-violet-500/30 to-violet-600/30 rounded-xl border border-violet-500/20 flex items-center justify-center">
+                  <svg class="w-8 h-8 text-violet-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-violet-500/20 to-violet-600/20 rounded-xl border border-violet-500/20 flex items-center justify-center">
+                  <svg class="w-8 h-8 text-violet-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-violet-500/25 to-violet-600/25 rounded-xl border border-violet-500/20 flex items-center justify-center">
+                  <svg class="w-8 h-8 text-violet-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    <span class="text-gray-400">Metadatos EXIF</span>
+                  </div>
+                  <span class="text-violet-400 font-semibold">Preservados</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span class="text-gray-400">Calidad original</span>
+                  </div>
+                  <span class="text-violet-400 font-semibold">100%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Badge open source -->
+            <div class="absolute -bottom-4 -left-4 glass rounded-2xl p-4 shadow-2xl">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-violet-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <div>
+                  <div class="text-xs text-gray-500">Basado en</div>
+                  <div class="text-sm font-bold text-violet-400">Ente</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenido (derecha en desktop) -->
+      <div class="order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-violet-400 font-semibold uppercase tracking-widest mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-violet-400"></span>
+          Privacidad absoluta
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6">
+          pix<span class="text-gradient-violet">911</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+          Respaldo de fotos y videos encriptados sin perder calidad ni metadatos. Arquitectura zero-knowledge: ni siquiera nosotros podemos ver su contenido.
+        </p>
+
+        <div class="space-y-4 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Cifrado de extremo a extremo</div>
+              <div class="text-gray-500 text-sm">Sus archivos se cifran en su dispositivo antes de subir</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Metadatos EXIF preservados</div>
+              <div class="text-gray-500 text-sm">Ubicación, fecha, cámara y configuración intactas</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Calidad original sin compresión</div>
+              <div class="text-gray-500 text-sm">Resolución y calidad idénticas al archivo original</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://pix911.app" target="_blank" rel="noopener" class="btn-shine inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-500 to-violet-600 text-white font-semibold shadow-lg shadow-violet-500/30 hover:shadow-violet-400/50 hover:-translate-y-0.5 transition-all">
+            Acceder a pix911
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 text-white font-semibold transition-all">
+            Solicitar demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DATOS911 ===== -->
+<section id="datos911" class="relative py-24 lg:py-32 z-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      
+      <!-- Contenido -->
+      <div>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs text-cyan-400 font-semibold uppercase tracking-widest mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+          Respaldo empresarial
+        </div>
+        <h2 class="font-display text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6">
+          datos<span class="text-gradient-cyan">911</span>
+        </h2>
+        <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+          Servicio de respaldo de datos cifrados y seguros dirigido a profesionales independientes y pequeñas empresas. Sus archivos siempre disponibles y bajo su control.
+        </p>
+
+        <div class="space-y-4 mb-10">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Backup automático y programable</div>
+              <div class="text-gray-500 text-sm">Configure frecuencia y horarios según sus necesidades</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Cifrado del lado del cliente</div>
+              <div class="text-gray-500 text-sm">Sus datos se cifran antes de salir de su dispositivo</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-semibold mb-1">Recuperación rápida ante incidentes</div>
+              <div class="text-gray-500 text-sm">Restaure sus datos en minutos, no en días</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="https://datos911.app" target="_blank" rel="noopener" class="btn-shine inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-white font-semibold shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/50 hover:-translate-y-0.5 transition-all">
+            Acceder a datos911
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <a href="#contacto" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full glass hover:bg-white/10 text-white font-semibold transition-all">
+            Solicitar demo
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="relative">
+        <div class="glass rounded-3xl p-8 lg:p-10 relative overflow-hidden">
+          <div class="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
+          
+          <div class="relative">
+            <!-- Mockup de backup dashboard -->
+            <div class="bg-ink-900 rounded-2xl p-6 border border-white/5">
+              <div class="flex items-center gap-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
+                <div class="ml-4 text-xs text-gray-500 font-mono">datos911.app</div>
+              </div>
+              
+              <div class="mb-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs text-gray-500">Último backup</span>
+                  <span class="text-xs text-cyan-400 font-semibold">Hace 2 minutos</span>
+                </div>
+                <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div class="progress-bar h-full rounded-full" style="width: 100%"></div>
+                </div>
+                <div class="text-xs text-gray-500 mt-2">Completado · 2.4 GB cifrados</div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 mb-6">
+                <div class="p-3 bg-white/5 rounded-xl">
+                  <div class="text-xs text-gray-500 mb-1">Archivos</div>
+                  <div class="text-xl font-bold text-cyan-400">12,847</div>
+                </div>
+                <div class="p-3 bg-white/5 rounded-xl">
+                  <div class="text-xs text-gray-500 mb-1">Almacenamiento</div>
+                  <div class="text-xl font-bold text-white">847 GB</div>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    <span class="text-gray-400">Documentos</span>
+                  </div>
+                  <span class="text-cyan-400 font-semibold">Sincronizado</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span class="text-gray-400">Imágenes</span>
+                  </div>
+                  <span class="text-cyan-400 font-semibold">Sincronizado</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                    <span class="text-gray-400">Base de datos</span>
+                  </div>
+                  <span class="text-cyan-400 font-semibold">Sincronizado</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Badge disponibilidad -->
+            <div class="absolute -top-4 -right-4 glass rounded-2xl p-4 shadow-2xl">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                <div>
+                  <div class="text-xs text-gray-500">Disponibilidad</div>
+                  <div class="text-sm font-bold text-green-400">99.9%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section id="contacto" class="relative py-24 lg:py-32 z-10">
+  <div class="max-w-4xl mx-auto px-6 lg:px-10 text-center">
+    <div class="glass rounded-3xl p-10 lg:p-16 relative overflow-hidden">
+      <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl"></div>
+      
+      <div class="relative">
+        <h2 class="font-display text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
+          ¿Tiene un proyecto en mente?
+        </h2>
+        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Conversemos sobre su idea. Le ayudamos a convertirla en software seguro, escalable y alineado con los objetivos de su negocio.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="mailto:contacto@c0dig0.com" class="btn-shine inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500 text-white font-semibold shadow-xl shadow-blue-500/30 hover:shadow-blue-400/50 hover:-translate-y-1 transition-all">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            contacto@c0dig0.com
+          </a>
+          <a href="#servicios" class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full glass hover:bg-white/10 text-white font-semibold transition-all hover:-translate-y-1">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="relative z-10 border-t border-white/5 mt-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-16">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-violet-500 to-cyan-500 flex items-center justify-center font-display font-bold text-white text-lg">c0</div>
+          <div>
+            <div class="font-display font-bold text-white text-lg">c0dig<span class="text-blue-400">0</span></div>
+            <div class="text-[10px] text-gray-500 tracking-widest uppercase">Laboratorio de software</div>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm max-w-sm leading-relaxed mb-5">
+          Desarrollo de software a medida, páginas web profesionales y servicios de respaldo encriptado. Tres productos SaaS propios con foco en seguridad y privacidad.
+        </p>
+        <div class="flex items-center gap-2 text-xs text-gray-500">
+          <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+          <span>Laboratorio activo · Desarrollo en progreso</span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white mb-4">Servicios</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#servicios" class="text-gray-400 hover:text-blue-400 transition-colors">Software a medida</a></li>
+          <li><a href="#servicios" class="text-gray-400 hover:text-violet-400 transition-colors">Páginas web</a></li>
+          <li><a href="#servicios" class="text-gray-400 hover:text-cyan-400 transition-colors">Respaldo de datos</a></li>
+          <li><a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white mb-4">Productos</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="https://control911.app" target="_blank" rel="noopener" class="text-gray-400 hover:text-blue-400 transition-colors">control911 ↗</a></li>
+          <li><a href="https://pix911.app" target="_blank" rel="noopener" class="text-gray-400 hover:text-violet-400 transition-colors">pix911 ↗</a></li>
+          <li><a href="https://datos911.app" target="_blank" rel="noopener" class="text-gray-400 hover:text-cyan-400 transition-colors">datos911 ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+      <div>© 2026 c0dig0. Todos los derechos reservados.</div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+        <a href="#" class="hover:text-white transition-colors">Términos</a>
+        <a href="#" class="hover:text-white transition-colors">Seguridad</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
