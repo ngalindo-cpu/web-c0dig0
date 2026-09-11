@@ -1,6 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
-  <text x="200" y="75" font-family="monospace" font-size="70" font-weight="bold" 
-        text-anchor="middle" letter-spacing="2">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
+  <defs>
+    <style>
+      /* Esto obliga al SVG a descargar la misma fuente en PC y celular */
+      @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&amp;display=swap');
+      
+      .logo-text {
+        font-family: 'IBM Plex Mono', monospace;
+        font-weight: 700;
+        font-size: 78px;
+        letter-spacing: 1px;
+      }
+    </style>
+  </defs>
+  
+  <text x="210" y="80" text-anchor="middle" class="logo-text">
     <tspan fill="#000000">c</tspan><tspan fill="#00E000">Ø</tspan><tspan fill="#000000">dig</tspan><tspan fill="#00E000">Ø</tspan>
   </text>
 </svg>
