@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFFFFF">
+<title>Términos y Condiciones — c0dig0</title>
+
+<!-- ============================================================
+     FUENTES
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     TAILWIND CSS
+============================================================ -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          abyss: '#FFFFFF',
+          panel: '#F4F6F9',
+          'elec-blue': '#24549C',
+          'emerald-glow': '#1C6F62'
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace']
+        },
+        boxShadow: {
+          'glow-blue': '0 25px 60px -25px rgba(36,84,156,0.4)',
+          'glow-blue-sm': '0 12px 30px -12px rgba(36,84,156,0.4)',
+          'glow-emerald': '0 25px 60px -25px rgba(28,111,98,0.35)',
+          'glow-emerald-sm': '0 12px 30px -12px rgba(28,111,98,0.35)'
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; color-scheme: light; }
+  body { background-color: #FFFFFF; }
+  .bg-grid{
+    background-image:
+      linear-gradient(rgba(15,23,42,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  /* Tipografía de lectura para el contenido legal */
+  .legal-content h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .legal-content h3 {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 600;
+    color: #0f172a;
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-content p {
+    color: #475569;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .legal-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+    color: #475569;
+  }
+  .legal-content ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+  }
+  .legal-content a {
+    color: #24549C;
+    text-decoration: underline;
+  }
+  .legal-content a:hover {
+    color: #1C6F62;
+  }
+  .legal-content strong {
+    color: #0f172a;
+    font-weight: 600;
+  }
+</style>
+</head>
+
+<body class="bg-abyss text-slate-700 font-sans antialiased selection:bg-elec-blue/20">
+
+  <!-- ============================================================
+       HEADER (igual al del index para consistencia)
+  ============================================================= -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-abyss/70 border-b border-slate-900/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-18 py-4">
+
+        <a href="index.html" class="flex items-center gap-2 font-display font-bold text-xl tracking-tight">
+          <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-elec-blue to-emerald-glow flex items-center justify-center text-abyss text-sm shadow-glow-blue-sm">c0</span>
+          <span>c0dig0</span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-9 text-sm text-slate-600">
+          <a href="index.html#laboratorio" class="hover:text-slate-900 transition-colors">Laboratorio</a>
+          <a href="index.html#control911" class="hover:text-slate-900 transition-colors">Control911</a>
+          <a href="index.html#pix911" class="hover:text-slate-900 transition-colors">Pix911</a>
+          <a href="index.html#datos911" class="hover:text-slate-900 transition-colors">Datos911</a>
+          <a href="index.html#contacto" class="hover:text-slate-900 transition-colors">Contacto</a>
+        </nav>
+
+        <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+           target="_blank" rel="noopener"
+           class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                  bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss
+                  shadow-glow-blue-sm hover:shadow-glow-blue transition-shadow duration-300">
+          Empecemos tu proyecto
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       CONTENIDO PRINCIPAL
+  ============================================================= -->
+  <main class="pt-32 pb-20 bg-grid">
+
+    <!-- Título de la página -->
+    <section class="max-w-4xl mx-auto px-6 lg:px-10 mb-12">
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-elec-blue transition-colors mb-6">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Volver al inicio
+      </a>
+      
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-mono text-elec-blue bg-elec-blue/10 border border-elec-blue/25 mb-5">
+        DOCUMENTO LEGAL
+      </span>
+      <h1 class="font-display font-bold text-4xl sm:text-5xl text-slate-900 leading-tight">
+        Términos y Condiciones de Uso
+      </h1>
+      <p class="mt-4 text-slate-500 font-mono text-sm">
+        Última actualización: 9 de septiembre de 2026
+      </p>
+    </section>
+
+    <!-- Texto legal -->
+    <article class="legal-content max-w-4xl mx-auto px-6 lg:px-10 pb-20">
+
+      <h2>1. Introducción y aceptación</h2>
+      <p>
+        Bienvenido a <strong>c0dig0</strong> (en adelante, "la Plataforma", "el Laboratorio" o "c0dig0"). Estos Términos y Condiciones de Uso (en adelante, los "Términos") constituyen un acuerdo legal vinculante entre usted (en adelante, el "Usuario" o "Cliente") y <strong>[NOMBRE LEGAL DE LA EMPRESA, ej: c0dig0 S.A.S.]</strong>, identificada con NIT <strong>[NÚMERO DE NIT]</strong>, con domicilio principal en la ciudad de Bogotá D.C., Colombia.
+      </p>
+      <p>
+        Al acceder, registrarse o utilizar cualquiera de nuestros servicios, sitios web o productos de software (incluyendo, pero no limitado a: <em>control911</em>, <em>pix911</em> y <em>datos911</em>), el Usuario declara haber leído, comprendido y aceptado plenamente estos Términos, así como nuestra Política de Privacidad.
+      </p>
+
+      <h2>2. Descripción de los servicios</h2>
+      <p>c0dig0 es un laboratorio de software que ofrece:</p>
+      <ul>
+        <li><strong>Desarrollo de software a medida y páginas web:</strong> Soluciones tecnológicas personalizadas bajo contratación específica.</li>
+        <li><strong>control911:</strong> Plataforma SaaS multi-tenant para la gestión de tiendas de reparación de equipos electrónicos y rubros afines.</li>
+        <li><strong>pix911:</strong> Servicio de respaldo de fotografías y videos con cifrado de extremo a extremo (E2E) y arquitectura <em>zero-knowledge</em>, basado en el software de código abierto Ente.</li>
+        <li><strong>datos911:</strong> Servicio de respaldo de datos cifrados y seguros orientado a profesionales independientes y pequeñas y medianas empresas (PyMEs).</li>
+      </ul>
+
+      <h2>3. Registro y cuentas de usuario</h2>
+      <p>3.1. Para acceder a los productos SaaS, el Usuario deberá crear una cuenta proporcionando información veraz, completa y actualizada.</p>
+      <p>3.2. El Usuario es el único responsable de mantener la confidencialidad de sus credenciales de acceso (usuario y contraseña) y de todas las actividades que se realicen bajo su cuenta.</p>
+      <p>3.3. c0dig0 se reserva el derecho de suspender o cancelar cuentas que utilicen información falsa o que violen estos Términos.</p>
+
+      <h2>4. Propiedad intelectual</h2>
+      <p>4.1. <strong>De c0dig0:</strong> Todos los derechos de propiedad intelectual, derechos de autor, marcas registradas, código fuente (salvo lo indicado en el punto 4.3) y diseño de la Plataforma y sus productos son propiedad exclusiva de c0dig0 o de sus licenciantes.</p>
+      <p>4.2. <strong>Del Usuario:</strong> El Usuario conserva todos los derechos sobre los datos, archivos, imágenes y contenido que cargue o procese a través de nuestros servicios. c0dig0 no reclama propiedad alguna sobre los datos del Usuario.</p>
+      <p>4.3. <strong>Software de código abierto:</strong> El producto <em>pix911</em> utiliza componentes del cliente de código abierto <strong>Ente Photos</strong>, el cual se distribuye bajo los términos de la <strong>GNU Affero General Public License v3.0 (AGPL-3.0)</strong>. El código fuente de dicho componente está disponible en <a href="https://github.com/ente-io/ente" target="_blank" rel="noopener">https://github.com/ente-io/ente</a>. El uso de este componente se rige por dicha licencia, la cual prevalece sobre estos Términos en caso de conflicto respecto a dicho software específico.</p>
+
+      <h2>5. Protección de datos personales (Habeas Data)</h2>
+      <p>5.1. c0dig0 actúa como Responsable y/o Encargado del tratamiento de datos personales, en estricto cumplimiento de la <strong>Ley 1581 de 2012</strong>, el <strong>Decreto 1377 de 2013</strong> y demás normas que las modifiquen o adicionen.</p>
+      <p>5.2. El Usuario autoriza a c0dig0 para recolectar, almacenar, usar y procesar sus datos personales con las finalidades descritas en nuestra <a href="privacidad.html">Política de Privacidad</a>.</p>
+      <p>5.3. <strong>Arquitectura Zero-Knowledge:</strong> Para los servicios <em>pix911</em> y <em>datos911</em>, c0dig0 implementa cifrado del lado del cliente. Esto significa que c0dig0 no tiene acceso a las claves de descifrado ni al contenido de los archivos del Usuario, garantizando la máxima privacidad.</p>
+      <p>5.4. El Usuario podrá ejercer en cualquier momento sus derechos de acceso, conocimiento, rectificación, actualización y supresión de sus datos, enviando una solicitud a: <a href="mailto:privacidad@c0dig0.com">privacidad@c0dig0.com</a>.</p>
+
+      <h2>6. Uso aceptable y prohibiciones</h2>
+      <p>El Usuario se compromete a NO utilizar los servicios de c0dig0 para:</p>
+      <ul>
+        <li>Violar cualquier ley, reglamento o norma aplicable en la República de Colombia (incluyendo la <strong>Ley 1273 de 2009</strong> sobre delitos informáticos).</li>
+        <li>Cargar, almacenar o distribuir contenido ilegal, difamatorio, obsceno o que infrinja derechos de terceros.</li>
+        <li>Intentar realizar ingeniería inversa, descompilar o desensamblar el software de c0dig0 (excepto lo permitido expresamente por la licencia AGPL-3.0 para los componentes de código abierto).</li>
+        <li>Realizar ataques de denegación de servicio (DDoS), introducir virus o malware, o intentar acceder a cuentas de otros Usuarios.</li>
+      </ul>
+
+      <h2>7. Pagos, facturación y suscripciones</h2>
+      <p>7.1. Los precios de las suscripciones a <em>control911</em>, <em>pix911</em> y <em>datos911</em> se encuentran publicados en la Plataforma y están expresados en Pesos Colombianos (COP), incluyendo los impuestos de ley (IVA), salvo indicación expresa en contrario.</p>
+      <p>7.2. Las renovaciones de las suscripciones son automáticas, salvo que el Usuario cancele su cuenta antes de la fecha de renovación.</p>
+      <p>7.3. c0dig0 emitirá la factura electrónica correspondiente, cumpliendo con la Resolución de la DIAN vigente.</p>
+
+      <h2>8. Limitación de responsabilidad</h2>
+      <p>8.1. Los servicios se proporcionan "TAL CUAL" y "SEGÚN DISPONIBILIDAD".</p>
+      <p>8.2. c0dig0 no será responsable por daños indirectos, incidentales, especiales o consecuentes (incluyendo, sin limitación, pérdida de beneficios, interrupción del negocio o pérdida de información) derivados del uso o la imposibilidad de uso de los servicios, <strong>salvo que exista dolo o culpa grave</strong> por parte de c0dig0, conforme a la legislación colombiana.</p>
+      <p>8.3. c0dig0 no garantiza que el servicio esté libre de errores o que funcione de manera ininterrumpida, aunque se compromete a realizar esfuerzos comercialmente razonables para mantener la disponibilidad del servicio.</p>
+
+      <h2>9. Derecho de retracto</h2>
+      <p>De conformidad con el artículo 47 de la <strong>Ley 1480 de 2011</strong> (Estatuto del Consumidor), el derecho de retracto no aplica para la adquisición de software personalizado, servicios de respaldo de datos que hayan comenzado a ejecutarse con la aceptación expresa del Usuario, o contenido digital suministrado por vía electrónica, una vez iniciada la ejecución del servicio.</p>
+
+      <h2>10. Suspensión y terminación</h2>
+      <p>10.1. c0dig0 podrá suspender o terminar el acceso del Usuario a los servicios de manera inmediata, sin previo aviso, en caso de incumplimiento de estos Términos.</p>
+      <p>10.2. El Usuario puede cancelar su suscripción en cualquier momento desde la configuración de su cuenta. Tras la cancelación, c0dig0 conservará los datos del Usuario por un período de gracia de <strong>30 días</strong> para permitir su exportación, tras lo cual serán eliminados de forma segura y definitiva.</p>
+
+      <h2>11. Modificaciones a los Términos</h2>
+      <p>c0dig0 se reserva el derecho de modificar estos Términos en cualquier momento. Las modificaciones entrarán en vigor a partir de su publicación en la Plataforma. Se notificará a los Usuarios registrados sobre cambios sustanciales a través del correo electrónico asociado a su cuenta. El uso continuado del servicio después de la publicación implica la aceptación de los nuevos Términos.</p>
+
+      <h2>12. Ley aplicable y jurisdicción</h2>
+      <p>Estos Términos se regirán e interpretarán de acuerdo con las leyes de la <strong>República de Colombia</strong>. Cualquier controversia, reclamación o disputa que surja de o en relación con estos Términos, será sometida a la jurisdicción exclusiva de los jueces y tribunales de la <strong>ciudad de Bogotá D.C.</strong>, renunciando las partes a cualquier otro fuero que pudiera corresponderles.</p>
+
+      <h2>13. Contacto</h2>
+      <p>Para cualquier pregunta, reclamación o notificación relacionada con estos Términos, el Usuario puede contactarnos a través de:</p>
+      <ul>
+        <li><strong>Correo electrónico:</strong> <a href="mailto:contacto@c0dig0.com">contacto@c0dig0.com</a></li>
+        <li><strong>Dirección física:</strong> [Dirección de la oficina en Bogotá, si aplica]</li>
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/573001234567" target="_blank" rel="noopener">+57 300 000 0000</a></li>
+      </ul>
+
+      <!-- Botón de volver al inicio -->
+      <div class="mt-16 pt-8 border-t border-slate-900/10 flex flex-col sm:flex-row gap-4 items-center justify-between">
+        <p class="text-sm text-slate-500">
+          ¿Tienes dudas sobre estos términos? Escríbenos.
+        </p>
+        <a href="index.html#contacto"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm
+                  bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss
+                  shadow-glow-blue-sm hover:shadow-glow-blue transition-shadow duration-300">
+          Contactar a c0dig0
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/>
+          </svg>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (igual al del index)
+  ============================================================= -->
+  <footer class="border-t border-slate-900/5 py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500 mb-8">
+        <span>© 2026 c0dig0 — laboratorio de software</span>
+        <span class="font-mono text-xs">CONTROL911 / PIX911 / DATOS911</span>
+      </div>
+
+      <div class="border-t border-slate-900/5 pt-8">
+        <p class="text-xs text-slate-400 leading-relaxed max-w-4xl mx-auto text-center">
+          pix911 está basado en <strong class="text-slate-300">Ente Photos</strong>, software de código abierto distribuido bajo licencia 
+          <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener" class="underline hover:text-slate-200 transition-colors">AGPL-3.0</a>.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
