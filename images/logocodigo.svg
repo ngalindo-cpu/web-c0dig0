@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 50 400 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 50 400 100" width="400" height="100">
   <defs>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -9,9 +9,8 @@
     </filter>
   </defs>
   
-  <!-- Texto c0dig0 con ceros en verde brillante -->
-  <text x="400" y="130" font-family="monospace" font-size="90" font-weight="bold" 
+  <text x="400" y="130" font-family="'IBM Plex Mono', monospace" font-size="90" font-weight="bold" 
         text-anchor="middle" letter-spacing="4" filter="url(#glow)">
-    <tspan fill="#000000">c</tspan><tspan fill="#00E000">0</tspan><tspan fill="#000000">dig</tspan><tspan fill="#00E000">0</tspan>
+    <tspan fill="#000000">c</tspan><tspan fill="#00E000">Ø</tspan><tspan fill="#000000">dig</tspan><tspan fill="#00E000">Ø</tspan>
   </text>
 </svg>
