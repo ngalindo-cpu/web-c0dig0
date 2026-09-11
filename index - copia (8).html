@@ -9,12 +9,15 @@
 
 <!-- ============================================================
      FUENTES
+     Space Grotesk para titulares (personalidad técnica/geométrica)
+     Inter para texto de lectura
+     IBM Plex Mono para etiquetas de producto / datos técnicos
 ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <!-- ============================================================
-     TAILWIND CSS
+     TAILWIND CSS (CDN / Play CDN — compila JIT en el navegador)
 ============================================================ -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -46,17 +49,12 @@
           'pulse-soft': {
             '0%, 100%': { opacity: 1 },
             '50%': { opacity: 0.55 }
-          },
-          'slide-up': {
-            '0%': { transform: 'translateY(100%)', opacity: '0' },
-            '100%': { transform: 'translateY(0)', opacity: '1' }
           }
         },
         animation: {
           float: 'float 6s ease-in-out infinite',
           'float-slow': 'float 9s ease-in-out infinite',
-          'pulse-soft': 'pulse-soft 2.6s ease-in-out infinite',
-          'slide-up': 'slide-up 0.5s ease-out forwards'
+          'pulse-soft': 'pulse-soft 2.6s ease-in-out infinite'
         }
       }
     }
@@ -77,45 +75,55 @@
 
 <body class="bg-abyss text-slate-700 font-sans antialiased selection:bg-elec-blue/20">
 
-<!-- ============================================================
-     1. BARRA DE NAVEGACIÓN
-============================================================ -->
-<header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-abyss/70 border-b border-slate-900/5">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="flex items-center justify-between h-18 py-4">
+  <!-- ============================================================
+       1. BARRA DE NAVEGACIÓN
+  ============================================================= -->
+  <header class="fixed top-0 inset-x-0 z-50 backdrop-blur-xl bg-abyss/70 border-b border-slate-900/5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-18 py-4">
 
-      <!-- LOGO c0dig0 -->
-      <a href="#home" class="flex items-center gap-2 mr-auto">
-        <img src="images/logocodigo.svg" alt="c0dig0" class="h-[40px] w-auto">
-      </a>
+        <a href="#home" class="flex items-center gap-2 font-display font-bold text-xl tracking-tight">
+          <span class="w-9 h-9 rounded-lg bg-gradient-to-br from-elec-blue to-emerald-glow flex items-center justify-center text-abyss text-sm shadow-glow-blue-sm">c0</span>
+          <span>c0dig0</span>
+        </a>
 
-      <nav class="hidden md:flex items-center gap-9 text-sm text-slate-600">
-        <a href="#laboratorio" class="hover:text-slate-900 transition-colors">Laboratorio</a>
-        <a href="#control911" class="hover:text-slate-900 transition-colors">Control911</a>
-        <a href="#pix911" class="hover:text-slate-900 transition-colors">Pix911</a>
-        <a href="#datos911" class="hover:text-slate-900 transition-colors">Datos911</a>
-        <a href="#contacto" class="hover:text-slate-900 transition-colors">Contacto</a>
-      </nav>
+        <nav class="hidden md:flex items-center gap-9 text-sm text-slate-600">
+          <a href="#laboratorio" class="hover:text-slate-900 transition-colors">Laboratorio</a>
+          <a href="#control911" class="hover:text-slate-900 transition-colors">Control911</a>
+          <a href="#pix911" class="hover:text-slate-900 transition-colors">Pix911</a>
+          <a href="#datos911" class="hover:text-slate-900 transition-colors">Datos911</a>
+          <a href="#contacto" class="hover:text-slate-900 transition-colors">Contacto</a>
+        </nav>
 
-      <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-2 -mr-2 text-slate-700">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/>
-        </svg>
-      </label>
+        <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+           target="_blank" rel="noopener"
+           class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
+                  bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss
+                  shadow-glow-blue-sm hover:shadow-glow-blue transition-shadow duration-300">
+          Empecemos tu proyecto
+        </a>
+
+        <label for="mobile-menu-toggle" class="md:hidden cursor-pointer p-2 -mr-2 text-slate-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </label>
+      </div>
     </div>
-  </div>
 
-  <input type="checkbox" id="mobile-menu-toggle" class="peer hidden">
-  <nav class="md:hidden max-h-0 peer-checked:max-h-96 overflow-hidden transition-all duration-300 border-t border-slate-900/5 bg-abyss/95">
-    <div class="flex flex-col gap-1 px-6 py-5 text-slate-700">
-      <a href="#laboratorio" class="py-2.5 border-b border-slate-900/5">Laboratorio</a>
-      <a href="#control911" class="py-2.5 border-b border-slate-900/5">Control911</a>
-      <a href="#pix911" class="py-2.5 border-b border-slate-900/5">Pix911</a>
-      <a href="#datos911" class="py-2.5 border-b border-slate-900/5">Datos911</a>
-      <a href="#contacto" class="py-2.5 border-b border-slate-900/5">Contacto</a>
-    </div>
-  </nav>
-</header>
+    <input type="checkbox" id="mobile-menu-toggle" class="peer hidden">
+    <nav class="md:hidden max-h-0 peer-checked:max-h-96 overflow-hidden transition-all duration-300 border-t border-slate-900/5 bg-abyss/95">
+      <div class="flex flex-col gap-1 px-6 py-5 text-slate-700">
+        <a href="#laboratorio" class="py-2.5 border-b border-slate-900/5">Laboratorio</a>
+        <a href="#control911" class="py-2.5 border-b border-slate-900/5">Control911</a>
+        <a href="#pix911" class="py-2.5 border-b border-slate-900/5">Pix911</a>
+        <a href="#datos911" class="py-2.5 border-b border-slate-900/5">Datos911</a>
+        <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+           target="_blank" rel="noopener"
+           class="py-2.5 mt-2 text-center rounded-full font-semibold bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss">Empecemos tu proyecto</a>
+      </div>
+    </nav>
+  </header>
 
   <main id="home">
 
@@ -149,7 +157,7 @@
           </p>
 
           <div class="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="https://wa.me/573103142486?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+            <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
                target="_blank" rel="noopener"
                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold
                       bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss
@@ -284,7 +292,7 @@
                 Explorar Control911
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
               </a>
-              <a href="https://wa.me/573103142486?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Control911"
+              <a href="https://wa.me/573001234567?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Control911"
                  target="_blank" rel="noopener"
                  class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm
                         bg-white/70 border border-elec-blue/30 text-elec-blue hover:bg-elec-blue/5 transition-colors duration-300">
@@ -349,7 +357,7 @@
               
               <!-- GRID COMPLETO: 6 elementos con el logo de Ente y las fotos -->
               <div class="grid grid-cols-3 gap-3">
-                <!-- 1. Logo de Ente Photos -->
+                <!-- 1. Logo de Ente Photos (SE MANTIENE IGUAL) -->
                 <div class="aspect-square rounded-lg bg-[#10B981] border border-emerald-glow/30 flex items-center justify-center relative overflow-hidden p-2">
                   <img src="images/ente-logo.png" alt="Ente Photos" class="w-full h-full object-contain">
                 </div>
@@ -394,8 +402,8 @@
               RESGUARDO FOTOGRÁFICO
             </span>
             
-            <!-- LOGO SVG de pix911 -->
-            <img src="images/logopix911.svg" alt="Pix911" class="block h-[58px] sm:h-[77px] mb-5 w-auto">
+            <!-- LOGO SVG de pix911 (20% más grande: 48px→58px / 64px→77px) -->
+            <img src="images/logopix911.svg" alt="Pix911" class="h-[58px] sm:h-[77px] mb-5 w-auto">
             
             <p class="text-slate-600 leading-relaxed mb-8">
               Respaldo de fotos y videos con cifrado de extremo a extremo, sin perder
@@ -433,7 +441,7 @@
                 Conocer Pix911
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
               </a>
-              <a href="https://wa.me/573103142486?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Pix911"
+              <a href="https://wa.me/573001234567?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Pix911"
                  target="_blank" rel="noopener"
                  class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm
                         bg-white/70 border border-emerald-glow/30 text-emerald-glow hover:bg-emerald-glow/5 transition-colors duration-300">
@@ -461,7 +469,7 @@
             </span>
             
             <!-- LOGO SVG de datos911 -->
-            <img src="images/logodatos911.svg" alt="Datos911" class="block h-[58px] sm:h-[77px] mb-5 w-auto">
+            <img src="images/logodatos911.svg" alt="Datos911" class="h-[58px] sm:h-[77px] mb-5 w-auto">
             
             <p class="text-slate-600 leading-relaxed mb-8">
               Respaldo de datos cifrados y seguros, dirigido a
@@ -497,7 +505,7 @@
                 Conocer Datos911
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
               </a>
-              <a href="https://wa.me/573103142486?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Datos911"
+              <a href="https://wa.me/573001234567?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Datos911"
                  target="_blank" rel="noopener"
                  class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm
                         bg-white/70 border border-elec-blue/30 text-elec-blue hover:bg-elec-blue/5 transition-colors duration-300">
@@ -553,7 +561,7 @@
           Escríbenos y conversemos sobre cómo construir, o qué respaldar primero.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/573103142486?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+          <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
              target="_blank" rel="noopener"
              class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold
                     bg-gradient-to-r from-elec-blue to-emerald-glow text-abyss
@@ -574,7 +582,7 @@
   </main>
 
   <!-- ============================================================
-       8. FOOTER
+       8. FOOTER (ACTUALIZADO CON ENLACES LEGALES)
   ============================================================= -->
   <footer class="border-t border-slate-900/5 py-10">
     <div class="max-w-7xl mx-auto px-6 lg:px-10">
@@ -605,7 +613,7 @@
   <!-- ============================================================
        9. BOTÓN FLOTANTE DE WHATSAPP
   ============================================================= -->
-  <a href="https://wa.me/573103142486?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
+  <a href="https://wa.me/573001234567?text=Hola%20c0dig0%2C%20quiero%20hablar%20sobre%20un%20proyecto"
      target="_blank" rel="noopener"
      aria-label="Escríbenos por WhatsApp"
      class="group fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full 
@@ -622,62 +630,6 @@
       ¿Hablamos de tu proyecto?
     </span>
   </a>
-
-  <!-- ============================================================
-       10. BANNER DE COOKIES (NUEVO)
-  ============================================================= -->
-  <div id="cookie-banner" class="fixed bottom-0 inset-x-0 z-[60] bg-slate-900/95 backdrop-blur-md border-t border-slate-700 p-4 sm:p-6 hidden">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-slate-300 text-center md:text-left leading-relaxed">
-        Usamos cookies para asegurar que te damos la mejor experiencia en nuestra web. Si continúas usando este sitio, asumiremos que estás de acuerdo con ello. 
-        <a href="politicas.html" class="text-emerald-glow hover:text-emerald-400 underline font-medium transition-colors">Política de privacidad</a>
-      </p>
-      <div class="flex items-center gap-3 w-full md:w-auto justify-center">
-        <button id="cookie-decline" class="px-5 py-2.5 text-sm font-medium text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-slate-800 w-full md:w-auto">
-          No
-        </button>
-        <button id="cookie-accept" class="px-6 py-2.5 text-sm font-semibold bg-elec-blue text-white rounded-full hover:bg-elec-blue/90 transition-all shadow-glow-blue-sm w-full md:w-auto">
-          Aceptar
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       SCRIPT PARA EL MANEJO DE COOKIES
-  ============================================================= -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const cookieBanner = document.getElementById('cookie-banner');
-      const acceptBtn = document.getElementById('cookie-accept');
-      const declineBtn = document.getElementById('cookie-decline');
-
-      // Verificar si el usuario ya tomó una decisión
-      if (!localStorage.getItem('cookieConsent')) {
-        // Mostrar el banner con una pequeña animación después de 1 segundo
-        setTimeout(() => {
-          cookieBanner.classList.remove('hidden');
-          cookieBanner.classList.add('animate-slide-up');
-        }, 1000);
-      }
-
-      // Función para ocultar el banner y guardar la decisión
-      function handleConsent(choice) {
-        localStorage.setItem('cookieConsent', choice);
-        cookieBanner.style.opacity = '0';
-        cookieBanner.style.transform = 'translateY(100%)';
-        cookieBanner.style.transition = 'all 0.3s ease-out';
-        
-        setTimeout(() => {
-          cookieBanner.classList.add('hidden');
-        }, 300);
-      }
-
-      // Event listeners para los botones
-      acceptBtn.addEventListener('click', () => handleConsent('accepted'));
-      declineBtn.addEventListener('click', () => handleConsent('declined'));
-    });
-  </script>
 
 </body>
 </html>

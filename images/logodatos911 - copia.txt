@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <!-- Fondo (borra esta línea si lo quieres transparente) -->
+  <rect width="1200" height="675" fill="#f5f4f1"/>
+
+  <!-- Escudo: contorno azul marino -->
+  <path d="M745 195 L640 235 V325 C640 398 688 447 745 472 C802 447 850 398 850 325 V235"
+        fill="none" stroke="#16294c" stroke-width="24"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Escudo: tope superior derecho rojo -->
+  <path d="M745 195 L860 240" fill="none" stroke="#d6373b" stroke-width="24" stroke-linecap="round"/>
+
+  <!-- El + dentro del escudo -->
+  <path d="M745 292 V382 M700 337 H790"
+        fill="none" stroke="#16294c" stroke-width="26" stroke-linecap="round"/>
+
+  <!-- datos (azul) + 911 (rojo), misma fuente y proporción de la imagen -->
+  <text x="160" y="392" font-family="Inter, Arial, sans-serif" font-size="210" font-weight="700"
+        fill="#16294c" stroke="#f5f4f1" stroke-width="14" paint-order="stroke">datos</text>
+  <text x="780" y="392" font-family="Inter, Arial, sans-serif" font-size="210" font-weight="700"
+        fill="#d6373b" stroke="#f5f4f1" stroke-width="14" paint-order="stroke">911</text>
+</svg>
